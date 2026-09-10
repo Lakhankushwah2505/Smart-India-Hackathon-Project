@@ -3,9 +3,7 @@ Energy and Resource Management For Polar Research Stations
 
 
 
-## FRONTEND FOLDER STRUCTURE.
-
-## Project structure
+## FRONTEND FOLDER STRUCTURE
 
 ```
 frontend/
