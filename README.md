@@ -5,59 +5,55 @@ Energy and Resource Management For Polar Research Stations
 
 Frontend Folder Structure.
 
-polar-energy-dashboard/
+## Project structure
+
+```
+frontend/
 ├── public/
+│   ├── favicon.ico
 │   └── index.html
 ├── src/
-│   ├── api/
-│   │   ├── client.js                 # axios/fetch wrapper, base URL config
-│   │   ├── energyApi.js              # calls to backend: /status, /forecast, /dispatch
-│   │   └── alertsApi.js              # calls for safety/alerts endpoints
-│   │
-│   ├── assets/
-│   │   └── icons/                    # any custom icons/images
-│   │
+│   ├── assets/                 # Static images, icons, station diagrams
 │   ├── components/
-│   │   ├── common/
-│   │   │   ├── MetricCard.jsx        # reusable stat card (SoC, fuel, etc.)
-│   │   │   ├── StatusBadge.jsx       # "nominal / warning / critical" badge
-│   │   │   └── Panel.jsx             # generic bordered card wrapper
-│   │   │
+│   │   ├── common/             # Buttons, cards, badges, loaders
 │   │   ├── dashboard/
-│   │   │   ├── DashboardHeader.jsx   # station name + status
-│   │   │   ├── MetricsRow.jsx        # battery/fuel/solar/wind cards
-│   │   │   ├── EnergyFlowChart.jsx   # stacked bar: solar/wind/diesel over time
-│   │   │   ├── ForecastVsActualChart.jsx  # line chart, forecast vs real load
-│   │   │   └── AlertsPanel.jsx       # safety/maintenance alert list
-│   │   │
+│   │   │   ├── MetricCard.jsx
+│   │   │   ├── EnergyFlowChart.jsx
+│   │   │   ├── ForecastChart.jsx
+│   │   │   ├── AlertsPanel.jsx
+│   │   │   └── StatusHeader.jsx
 │   │   └── layout/
-│   │       ├── Sidebar.jsx           # nav (if multi-page: dashboard/history/settings)
-│   │       └── TopBar.jsx
-│   │
+│   │       ├── Sidebar.jsx
+│   │       ├── Navbar.jsx
+│   │       └── PageLayout.jsx
+│   ├── pages/
+│   │   ├── Dashboard.jsx        # Main energy overview page
+│   │   ├── Forecasts.jsx        # Detailed forecast vs actual views
+│   │   ├── Alerts.jsx           # Full alert/maintenance log
+│   │   └── Settings.jsx         # Thresholds, safety margins config
+│   ├── services/
+│   │   ├── api.js               # Axios/fetch instance, base config
+│   │   ├── energyService.js      # Endpoints: battery, solar, wind, diesel
+│   │   ├── forecastService.js    # Forecast data endpoints
+│   │   └── alertService.js       # Alerts/safety endpoints
 │   ├── hooks/
-│   │   ├── useEnergyStatus.js        # polling/live-state hook
+│   │   ├── useEnergyData.js      # Custom hook for live/polled energy state
 │   │   ├── useForecastData.js
 │   │   └── useAlerts.js
-│   │
-│   ├── pages/
-│   │   ├── Dashboard.jsx             # main page, composes dashboard/* components
-│   │   ├── History.jsx               # past seasons/fuel usage trends (optional)
-│   │   └── Settings.jsx              # thresholds, safety margins config (optional)
-│   │
 │   ├── context/
-│   │   └── EnergySystemContext.jsx   # global state: current SoC, fuel, alerts
-│   │
+│   │   └── DashboardContext.jsx  # Global state (station status, theme, etc.)
 │   ├── utils/
-│   │   ├── formatters.js             # number/unit formatting (kW, %, days)
-│   │   └── constants.js              # thresholds, colors, refresh intervals
-│   │
+│   │   ├── formatters.js         # Number/date/unit formatting
+│   │   └── constants.js          # Thresholds, color codes, labels
 │   ├── styles/
-│   │   └── globals.css               # base styles, CSS variables/theme
-│   │
+│   │   ├── globals.css
+│   │   └── variables.css
 │   ├── App.jsx
-│   └── main.jsx                      # entry point (if Vite) or index.js (if CRA)
-│
-├── .env                              # API base URL, keys
+│   ├── main.jsx                  # Entry point (Vite) or index.js (CRA)
+│   └── routes.jsx                # Route definitions
+├── .env.example
+├── .gitignore
 ├── package.json
-├── vite.config.js                    # or react-scripts config if CRA
+├── vite.config.js                # or webpack config if using CRA
 └── README.md
+```
